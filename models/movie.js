@@ -10,6 +10,10 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Поле должно быть заполнено'],
   },
+  duration: {
+    type: Number,
+    required: [true, 'Поле должно быть заполнено'],
+  },
   year: {
     type: String,
     required: [true, 'Поле должно быть заполнено'],
@@ -45,22 +49,12 @@ const movieSchema = new mongoose.Schema({
   nameRU: {
     type: String,
     required: [true, 'Поле должно быть заполнено'],
-    validate: {
-      validator(v) {
-        return validator.isAlphanumeric(v, 'ru-RU');
-      },
-      message: 'Имя фильма должно быть на русском языке',
-    },
+    validate: [(nameRU) => validator.isAlphanumeric(nameRU, 'ru-RU'), 'Имя фильма должно быть на русском языке'],
   },
   nameEN: {
     type: String,
     required: [true, 'Поле должно быть заполнено'],
-    validate: {
-      validator(v) {
-        return validator.isAlphanumeric(v, 'en-US');
-      },
-      message: 'Имя фильма должно быть на английском языке',
-    },
+    validate: [(nameEN) => validator.isAlphanumeric(nameEN, 'en-US'), 'Имя фильма должно быть на английском языке'],
   },
 });
 
