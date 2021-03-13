@@ -1,8 +1,11 @@
 const { CelebrateError } = require('celebrate');
-const ConflictError = require('../errors/ConflictError');
-const ServerError = require('../errors/ServerError');
-const BadRequestError = require('../errors/BadRequestError');
-const NotFoundError = require('../errors/NotFoundError');
+const {
+  ConflictError,
+  ServerError,
+  BadRequestError,
+  NotFoundError,
+} = require('../errors/index');
+const { errMessages } = require('../data/errMessages');
 
 const handleErrors = (err, req, res, next) => {
   try {
@@ -25,7 +28,7 @@ const handleErrors = (err, req, res, next) => {
       return res.status(err.statusCode).send({ message: err.message });
     }
     if (err.name === 'MongoError' && err.code === 11000) {
-      throw new ConflictError('Пользователь с такой почтой уже существует');
+      throw new ConflictError(errMessages.err409.mongo11000);
     }
     if (err.name === 'CastError' || err.name === 'ValidationError') {
       throw new BadRequestError(err.message);
@@ -41,7 +44,7 @@ const handleErrors = (err, req, res, next) => {
     ) {
       throw new BadRequestError(err.stack);
     }
-    throw new ServerError('На сервере произошла ошибка');
+    throw new ServerError(errMessages.err500);
   } catch (e) {
     res.status(e.statusCode).send({ message: e.message });
     return next();

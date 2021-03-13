@@ -1,5 +1,6 @@
 const Movie = require('../models/movie');
-const ForbiddenError = require('../errors/ForbiddenError');
+const { ForbiddenError } = require('../errors/index');
+const { errMessages } = require('../data/errMessages');
 
 const createMovies = (req, res, next) => {
   Movie.create({ ...req.body, owner: req.user._id })
@@ -17,7 +18,7 @@ const deleteMovie = (req, res, next) => {
   Movie.findById(req.params._id).orFail()
     .then((movie) => {
       if (String(movie.owner) !== req.user._id) {
-        return next(new ForbiddenError('Нельзя удалить чужую карточку с фильмом', 'deleteMovie'));
+        return next(new ForbiddenError(errMessages.err403.deleteMovie, 'deleteMovie'));
       }
       return Movie.findByIdAndRemove(req.params._id).orFail()
         .then(() => res.send({ message: 'Карточка с фильмом удалена из сохранённых' }));
