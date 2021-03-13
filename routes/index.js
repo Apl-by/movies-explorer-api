@@ -5,9 +5,10 @@ const usersRouter = require('./users');
 const moviesRouter = require('./movies');
 const nonexistentPath = require('../controllers/nonexistent');
 const auth = require('../middlewares/auth');
+const { registerValidator, loginValidator } = require('../middlewares/validators');
 
-router.post('/signup', createUser);
-router.post('/signin', login);
+router.post('/signup', registerValidator, createUser);
+router.post('/signin', loginValidator, login);
 router.post('/signout', deleteCookie);
 router.use('/users', auth, usersRouter);
 router.use('/movies', auth, moviesRouter);

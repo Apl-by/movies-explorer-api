@@ -1,3 +1,4 @@
+const { CelebrateError } = require('celebrate');
 const ConflictError = require('../errors/ConflictError');
 const ServerError = require('../errors/ServerError');
 const BadRequestError = require('../errors/BadRequestError');
@@ -5,6 +6,12 @@ const NotFoundError = require('../errors/NotFoundError');
 
 const handleErrors = (err, req, res, next) => {
   try {
+    if (err instanceof CelebrateError) {
+      const message = err.details.get('body')
+        ? err.details.get('body').details[0].message
+        : err.details.get('params').details[0].message;
+      return res.status(400).send({ message });
+    }
     if (err.errLocation === 'login' && err.statusCode === 401) {
       return res.status(err.statusCode).send({ message: err.message });
     }
