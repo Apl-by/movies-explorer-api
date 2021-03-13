@@ -14,4 +14,4 @@ app.use(cookieParser());
 app.use('/', router);
 app.use(handleErrors);
 
-app.listen(PORT, console.log(1));
+app.listen(PORT, console.log({ 404: 1 }));

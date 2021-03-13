@@ -17,7 +17,7 @@ const deleteMovie = (req, res, next) => {
   Movie.findById(req.params._id).orFail()
     .then((movie) => {
       if (String(movie.owner) !== req.user._id) {
-        return next(new ForbiddenError('Нельзя удалить чужую карточку с фильмом'));
+        return next(new ForbiddenError('Нельзя удалить чужую карточку с фильмом', 'deleteMovie'));
       }
       return Movie.findByIdAndRemove(req.params._id).orFail()
         .then(() => res.send({ message: 'Карточка с фильмом удалена из сохранённых' }));

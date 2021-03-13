@@ -1,7 +1,7 @@
 const NotFoundError = require('../errors/NotFoundError');
 
-const handleNonexistentPath = (req, res, next) => {
-  next(new NotFoundError({ message: 'Запрашиваемый ресурс не найден' }));
+const nonexistentPath = (req, res, next) => {
+  next(new NotFoundError('Запрашиваемый ресурс не найден', 'nonexistentPath'));
 };
 
-module.exports = handleNonexistentPath;
+module.exports = nonexistentPath;
