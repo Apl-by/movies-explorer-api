@@ -23,6 +23,25 @@ const mongooseOptions = {
   useUnifiedTopology: true,
 };
 
+const allowedCors = [
+  '*',
+  // 'http://localhost:3001',
+  // 'http://localhost:3000',
+];
+
+const corsOptions = {
+  origin: allowedCors,
+  optionsSuccessStatus: 200,
+};
+
 module.exports = {
-  PORT, JWT_SECRET, COOKIE_NAME, MONGO_URL, mongooseOptions, tokenConfig, cookieConfig,
+  PORT,
+  JWT_SECRET,
+  COOKIE_NAME,
+  MONGO_URL,
+  mongooseOptions,
+  tokenConfig,
+  cookieConfig,
+  allowedCors,
+  corsOptions,
 };
