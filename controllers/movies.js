@@ -1,21 +1,19 @@
 const Movie = require('../models/movie');
 
 const createMovies = (req, res, next) => {
-  // const { _id } = req.user;
-  const id = '604b75dd137a8906ac800933'; // удалить хардкод!!!
-  Movie.create({ ...req.body, owner: id })
+  Movie.create({ ...req.body, owner: req.user._id })
     .then((card) => res.send(card))
     .catch(next);
 };
 
 const getMovies = (req, res, next) => {
-  Movie.find({})
+  Movie.find({ owner: req.user._id })
     .then((movies) => res.send(movies))
     .catch(next);
 };
 
 const deleteMovie = (req, res, next) => {
-  Movie.findOneAndDelete({ movieId: req.params.movieId }).orFail()
+  Movie.findOneAndDelete({ _id: req.params._id }).orFail()
     .then(() => res.send({ message: 'Фильм удален из сохранённых' }))
     .catch(next);
 };

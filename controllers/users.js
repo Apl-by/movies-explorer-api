@@ -1,4 +1,8 @@
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const {
+  JWT_SECRET, COOKIE_NAME, tokenConfig, cookieConfig,
+} = require('../config/config');
 const User = require('../models/user');
 
 const createUser = (req, res, next) => {
@@ -10,18 +14,14 @@ const createUser = (req, res, next) => {
 };
 
 const getUser = (req, res, next) => {
-  // const id = req.user._id;
-  const id = '604b75dd137a8906ac800933'; // удалить хардкод!!!
-  User.findById(id).orFail()
+  User.findById(req.user._id).orFail()
     .then((user) => res.send(user))
     .catch(next);
 };
 
 const updateUser = (req, res, next) => {
-  // const id = req.user._id;
-  const id = '604b75dd137a8906ac800933'; // удалить хардкод!!!
   User.findByIdAndUpdate(
-    id,
+    req.user._id,
     req.body,
     { new: true, runValidators: true },
   )
@@ -30,4 +30,17 @@ const updateUser = (req, res, next) => {
     .catch(next);
 };
 
-module.exports = { getUser, updateUser, createUser };
+const login = (req, res, next) => {
+  const { email, password } = req.body;
+
+  return User.findUserByCredentials(email, password)
+    .then((user) => {
+      const token = jwt.sign({ _id: user._id }, JWT_SECRET, tokenConfig);
+      res.cookie(COOKIE_NAME, token, cookieConfig).end();
+    })
+    .catch(next);
+};
+
+module.exports = {
+  getUser, updateUser, createUser, login,
+};
