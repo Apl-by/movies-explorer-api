@@ -24,7 +24,8 @@ const mongooseOptions = {
 };
 
 const allowedCors = [
-  '*',
+  'http://aplby.students.nomoredomains.icu',
+  'https://aplby.students.nomoredomains.icu',
   // 'http://localhost:3001',
   // 'http://localhost:3000',
 ];
@@ -32,6 +33,11 @@ const allowedCors = [
 const corsOptions = {
   origin: allowedCors,
   optionsSuccessStatus: 200,
+};
+
+const limiterConfig = {
+  windowMs: 10 * 60 * 1000,
+  max: 150,
 };
 
 module.exports = {
@@ -44,4 +50,5 @@ module.exports = {
   cookieConfig,
   allowedCors,
   corsOptions,
+  limiterConfig,
 };
