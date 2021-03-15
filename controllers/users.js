@@ -36,7 +36,7 @@ const login = (req, res, next) => {
   return User.findUserByCredentials(email, password)
     .then((user) => {
       const token = jwt.sign({ _id: user._id }, JWT_SECRET, tokenConfig);
-      res.cookie(COOKIE_NAME, token, cookieConfig).end();
+      res.cookie(COOKIE_NAME, token, cookieConfig).send({ token });
     })
     .catch(next);
 };

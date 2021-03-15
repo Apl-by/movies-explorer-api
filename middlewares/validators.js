@@ -1,5 +1,6 @@
 const { celebrate, Joi } = require('celebrate');
 const validator = require('validator');
+const { isLangValid } = require('../utils/utils');
 
 const registerValidator = celebrate({
   body: Joi.object().keys({
@@ -50,13 +51,13 @@ const movieValidator = celebrate({
     }),
     movieId: Joi.number().required(),
     nameRU: Joi.string().required().custom((value, helper) => {
-      if (validator.isAlphanumeric(value, 'ru-RU')) {
+      if (isLangValid(value, 'ru')) {
         return value;
       }
       return helper.message('Поле nameRU должно быть заполнено на русском языке');
     }),
     nameEN: Joi.string().required().custom((value, helper) => {
-      if (validator.isAlphanumeric(value, 'en-US')) {
+      if (isLangValid(value, 'en')) {
         return value;
       }
       return helper.message('Поле nameEN должно быть заполнено на английском языке');

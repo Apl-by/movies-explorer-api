@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const { isLangValid } = require('../utils/utils');
 
 const movieSchema = new mongoose.Schema({
   country: {
@@ -49,12 +50,12 @@ const movieSchema = new mongoose.Schema({
   nameRU: {
     type: String,
     required: [true, 'Поле должно быть заполнено'],
-    validate: [(nameRU) => validator.isAlphanumeric(nameRU, 'ru-RU'), 'Имя фильма должно быть на русском языке'],
+    validate: [(v) => isLangValid(v, 'ru'), 'Имя фильма должно быть на русском языке'],
   },
   nameEN: {
     type: String,
     required: [true, 'Поле должно быть заполнено'],
-    validate: [(nameEN) => validator.isAlphanumeric(nameEN, 'en-US'), 'Имя фильма должно быть на английском языке'],
+    validate: [(v) => isLangValid(v, 'en'), 'Имя фильма должно быть на английском языке'],
   },
 });
 
