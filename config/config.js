@@ -32,12 +32,15 @@ const allowedCors = [
 
 const corsOptions = {
   origin: allowedCors,
+  credentials: true,
   optionsSuccessStatus: 200,
+  exposedHeaders: ['set-cookie'],
+  maxAge: 86400,
 };
 
 const limiterConfig = {
   windowMs: 10 * 60 * 1000,
-  max: 150,
+  max: 250,
 };
 
 module.exports = {
