@@ -24,6 +24,9 @@ const handleErrors = (err, req, res, next) => {
     if (err.errLocation === 'deleteMovie' && err.statusCode === 403) {
       return res.status(err.statusCode).send({ message: err.message });
     }
+    if (err.errLocation === 'createMovie' && err.statusCode === 403) {
+      return res.status(err.statusCode).send({ message: err.message });
+    }
     if (err.errLocation === 'nonexistentPath' && err.statusCode === 404) {
       return res.status(err.statusCode).send({ message: err.message });
     }

@@ -44,7 +44,7 @@ const movieSchema = new mongoose.Schema({
     required: [true, 'Поле должно быть заполнено'],
   },
   movieId: {
-    type: String,
+    type: Number,
     required: [true, 'Поле должно быть заполнено'],
   },
   nameRU: {
