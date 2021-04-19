@@ -24,8 +24,8 @@ const mongooseOptions = {
 };
 
 const allowedCors = [
-  'http://aplby.students.nomoredomains.icu',
-  'https://aplby.students.nomoredomains.icu',
+  'http://apl-by.site',
+  'https://apl-by.site',
   // 'http://localhost:3001',
   // 'http://localhost:3000',
 ];

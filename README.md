@@ -1,10 +1,12 @@
 # Дипломная работа Yandex-praktikum (Back-end)
 ---
 ### О проекте
-___Movies-explorer-api___ является REST API cервиса movies-explorer, в котором можно найти фильмы по запросу и сохранить в личном кабинете. Включает в себя регистрацию, авторизацию пользователей, работу с БД.  
+__Movies-explorer-api__ является REST API cервиса movies-explorer, в котором можно найти фильмы по запросу и сохранить в личном кабинете. Включает в себя регистрацию, авторизацию пользователей, работу с БД.  
 URI ресурса:  
-- https://api.aplby.students.nomoredomains.icu;
+- https://api.apl-by.site;
 - публичный IP сервера: 84.201.172.6;  
+
+Ссылка на front-end часть дипломного проекта: https://github.com/Apl-by/movies-explorer-frontend;
 ### Начало работы  
 Запуск сервера в режиме *production*:  
 ```bash
