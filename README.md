@@ -6,7 +6,7 @@ URI ресурса:
 - https://api.apl-by.site;
 - публичный IP сервера: 84.201.172.6;  
 
-Ссылка на front-end часть дипломного проекта: https://github.com/Apl-by/movies-explorer-frontend;
+Ссылка на front-end часть дипломного проекта: https://github.com/apl-by/movies-explorer-frontend;
 ### Начало работы  
 Запуск сервера в режиме *production*:  
 ```bash
@@ -64,7 +64,7 @@ POST /signout
 **nameRU** — название фильма на русском языке, обязательное поле-строка;  
 **nameEN**— название фильма на английском языке, обязательное поле-строка.    
 
-### Технологии использованные в проекте  
+### Технологии и библиотеки использованные в проекте  
 - Express(Node.js);
 - MongoDb;
 - mongoose;
