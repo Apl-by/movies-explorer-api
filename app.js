@@ -11,7 +11,7 @@ const handleErrors = require('./middlewares/handlerErrors');
 const {
   PORT, MONGO_URL, mongooseOptions, corsOptions, limiterConfig,
 } = require('./config/config');
-const { requestLogger, errorLogger } = require('./middlewares/logger');
+// const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();
 mongoose.connect(MONGO_URL, mongooseOptions);
@@ -19,7 +19,7 @@ mongoose.connect(MONGO_URL, mongooseOptions);
 app.use(cors(corsOptions));
 app.use(corsHeader);
 
-app.use(requestLogger);
+// app.use(requestLogger);
 
 app.use(rateLimit(limiterConfig));
 app.use(helmet());
@@ -29,7 +29,7 @@ app.use(cookieParser());
 
 app.use('/', router);
 
-app.use(errorLogger);
+// app.use(errorLogger);
 app.use(handleErrors);
 
 app.listen(PORT);

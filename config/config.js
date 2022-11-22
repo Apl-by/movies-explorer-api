@@ -24,8 +24,8 @@ const mongooseOptions = {
 };
 
 const allowedCors = [
-  'http://apl-by.site',
-  'https://apl-by.site',
+  'http://diploma.apl-by.ru',
+  'https://diploma.apl-by.ru',
   // 'http://localhost:3001',
   // 'http://localhost:3000',
 ];

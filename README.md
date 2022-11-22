@@ -3,8 +3,8 @@
 ### О проекте
 __Movies-explorer-api__ является REST API cервиса movies-explorer, в котором можно найти фильмы по запросу и сохранить в личном кабинете. Включает в себя регистрацию, авторизацию пользователей, работу с БД.  
 URI ресурса:  
-- https://api.apl-by.site;
-- публичный IP сервера: 84.201.172.6;  
+- https://api.diploma.apl-by.ru;
+- публичный IP сервера: 5.8.10.237;  
 
 Ссылка на front-end часть дипломного проекта: https://github.com/apl-by/movies-explorer-frontend;
 ### Начало работы  
